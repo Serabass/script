@@ -73,6 +73,7 @@ function removeFirstLine() {
              .map(chunk => chunk.trim())
             );
         resolve(res);
+        delete window.fn;
       };
 
       let script = document.createElement('script');
