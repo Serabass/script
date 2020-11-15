@@ -7,7 +7,7 @@ function stripFirstLine($text) {
 }
 
 function appendLine($file, $line) {
-  $fp = fopen('data.txt', 'a');
-  fwrite($fp, '\nappending data');  
+  $fp = fopen($file, 'a');
+  fwrite($fp, "\n" . $line);  
   fclose($fp);  
 }
