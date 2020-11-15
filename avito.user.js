@@ -8,7 +8,7 @@
 // @grant        none
 // ==/UserScript==
 
-let serverRoot = 'http://pp.serabass.net/avito';
+let serverRoot = 'https://pp.serabass.net/avito';
 
 function delay(time) {
   return new Promise((resolve) => {
@@ -76,7 +76,7 @@ function removeFirstLine() {
       };
 
       let script = document.createElement('script');
-      script.src = serverRoot + '/file.php';
+      script.src = serverRoot +'/file.php';
       document.body.append(script);
     });
   }
