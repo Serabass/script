@@ -63,14 +63,22 @@ function removeFirstLine() {
   'use strict';
 
   async function getPrices() {
-      let file = await getFile();
-      return file
-          .split(/[\r\n]+/)
-          .map(line => line
-               .trim()
-               .split(/\s+/)
-               .map(chunk => chunk.trim())
-              );
+    return new Promise(resolve => {
+      window.fn = (file) => {
+        let res = file
+        .split(/[\r\n]+/)
+        .map(line => line
+             .trim()
+             .split(/\s+/)
+             .map(chunk => chunk.trim())
+            );
+        resolve(res);
+      };
+
+      let script = document.createElement('script');
+      script.src = serverRoot + '/file.php';
+      document.body.append(script);
+    });
   }
 
   await delay(5000);
