@@ -55,6 +55,10 @@ async function getFile() {
   return text.trim();
 }
 
+function removeFirstLine() {
+  return fetch(serverRoot + '/remove.php');
+}
+
 (async function() {
   'use strict';
 
