@@ -2,8 +2,8 @@
 // @name         Avito prices
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  try to take over the world!
-// @author       You
+// @description  Давай покрасим холодильник в чёрный цвет
+// @author       Serabass
 // @match        https://www.avito.ru/*
 // @grant        none
 // ==/UserScript==
