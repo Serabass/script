@@ -1,0 +1,3 @@
+<?php
+
+$file = 'file.txt';

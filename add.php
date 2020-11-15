@@ -1,6 +1,7 @@
 <?php
 
-$file = 'file.txt';
+include 'common.php';
+
 $line = $_GET['line'];
 
 function appendLine($file, $line) {
