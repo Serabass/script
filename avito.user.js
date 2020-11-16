@@ -5,8 +5,7 @@
 // @description  try to take over the world!
 // @author       You
 // @match        https://www.avito.ru/*
-// @require      https://pp.serabass.net/avito/file.php
-// @grant        none
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
 let serverRoot = 'https://pp.serabass.net/avito';
@@ -63,8 +62,16 @@ function removeFirstLine() {
 (async function() {
   'use strict';
 
-  async function getPrices() {
-    return window._script__data;
+  function getPrices() {
+    return new Promise((resolve) => {
+      GM.xmlHttpRequest({
+        method: "GET",
+        url: 'https://pp.serabass.net/avito/file.php',
+        onload: function(response) {
+          resolve(response.responseText);
+        }
+      });
+    });
   }
 
   let prices = await getPrices();
