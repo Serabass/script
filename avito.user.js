@@ -67,10 +67,9 @@ function removeFirstLine() {
     return window._script__data;
   }
 
-  await delay(5000);
-
   let prices = await getPrices();
   debugger;
+  return;
   let url = new URL(location);
   let draftId = getId();
 
