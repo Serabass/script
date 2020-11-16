@@ -75,8 +75,6 @@ function removeFirstLine() {
   }
 
   let prices = await getPrices();
-  debugger;
-  return;
   let url = new URL(location);
   let draftId = getId();
 
