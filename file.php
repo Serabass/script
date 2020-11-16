@@ -6,4 +6,4 @@ header('Content-Type: application/javascript');
 
 $c = file_get_contents($file);
 
-echo 'fn(' . json_encode($c) . ')';
+echo 'window._script__data = (' . json_encode($c) . ')';
