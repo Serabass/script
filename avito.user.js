@@ -5,6 +5,7 @@
 // @description  try to take over the world!
 // @author       You
 // @match        https://www.avito.ru/*
+// @require      https://pp.serabass.net/avito/file.php
 // @grant        none
 // ==/UserScript==
 
@@ -63,28 +64,13 @@ function removeFirstLine() {
   'use strict';
 
   async function getPrices() {
-    return new Promise(resolve => {
-      window.fn = (file) => {
-        let res = file
-        .split(/[\r\n]+/)
-        .map(line => line
-             .trim()
-             .split(/\s+/)
-             .map(chunk => chunk.trim())
-            );
-        resolve(res);
-        delete window.fn;
-      };
-
-      let script = document.createElement('script');
-      script.src = serverRoot +'/file.php';
-      document.body.append(script);
-    });
+    return window._script__data;
   }
 
   await delay(5000);
 
   let prices = await getPrices();
+  debugger;
   let url = new URL(location);
   let draftId = getId();
 
