@@ -3,6 +3,7 @@
 include 'common.php';
 
 header('Content-Type: application/javascript');
+header('Cache-Control: no-cache');
 
 $c = file_get_contents($file);
 
