@@ -9,4 +9,4 @@ header('Expires: 0');
 
 $c = file_get_contents($file);
 
-echo json_encode($c);
+echo $c;

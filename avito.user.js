@@ -40,7 +40,7 @@ async function clickSubmitButton2() {
   btn.click();
 }
 
-function clickCheckboxs() {
+function clickCheckboxes() {
   document.querySelectorAll('[class^=service-service] [class^=service-info] label[class^=checkbox-checkbox]')[0].click();
   document.querySelectorAll('[class^=service-service] [class^=service-info] label[class^=checkbox-checkbox]')[1].click();
 }
@@ -68,11 +68,16 @@ function removeFirstLine() {
         method: "GET",
         url: 'https://pp.serabass.net/avito/file.php',
         onload: function(response) {
-          resolve(response.responseText);
+          resolve(response);
         }
       });
-    });
+    })
+    .then(response => response.responseText.trim())
+    .then(responseText => responseText.split(/[\r\n]+/).map(line => line.split(/\s+/)))
+    ;
   }
+
+  await delay(2000);
 
   let prices = await getPrices();
   let url = new URL(location);
@@ -99,7 +104,7 @@ function removeFirstLine() {
   await delay(5000);
   clickSubmitButton();
   await delay(15000);
-  clickCheckboxs();
+  clickCheckboxes();
   setPrice(price);
   await clickSubmitButton2();
 
