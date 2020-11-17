@@ -8,7 +8,7 @@
 // @grant        GM.xmlHttpRequest
 // @require      file://M:\dev\_job\fl\avito-us\file.js
 // ==/UserScript==
-////
+
 function delay(time) {
   return new Promise((resolve) => {
       setTimeout(resolve, time);
