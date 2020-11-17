@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Avito prices
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.3
 // @description  try to take over the world!
 // @author       You
 // @match        https://www.avito.ru/*
 // @grant        GM.xmlHttpRequest
 // @require      file://M:\dev\_job\fl\avito-us\file.js
 // ==/UserScript==
-/////////
+////
 function delay(time) {
   return new Promise((resolve) => {
       setTimeout(resolve, time);
