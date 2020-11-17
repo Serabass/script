@@ -5,7 +5,6 @@
 // @description  try to take over the world!
 // @author       You
 // @match        https://www.avito.ru/*
-// @grant        GM.xmlHttpRequest
 // @require      file://M:\dev\_job\fl\avito-us\file.js
 // ==/UserScript==
 
@@ -26,14 +25,14 @@ function selectFree() {
 
 function clickSubmitButton() {
   let btn = document
-  .querySelector('[class^=layout-footer] > div > div > div:nth-child(2) > button');
+    .querySelector('[class^=layout-footer] > div > div > div:nth-child(2) > button');
   console.log('btn', btn);
   btn.click();
 }
 
 async function clickSubmitButton2() {
   let btn = document
-  .querySelector('[class^=layout-footer] > div > div > div:nth-child(2) > button');
+    .querySelector('[class^=layout-footer] > div > div > div:nth-child(2) > button');
   console.log('btn', btn);
   await delay(2000);
   btn.click();
@@ -88,11 +87,7 @@ function getId() {
   }
 
   let [id, price] = prices[priceLineIndex];
-
-  debugger;
-  return;
   await delay(5000);
-
   setPrice(price);
   selectFree();
   await delay(5000);
@@ -101,17 +96,6 @@ function getId() {
   clickCheckboxes();
   setPrice(price);
   await clickSubmitButton2();
-
-  //let next = prices[priceLineIndex + 1];
-
-  //if (!next) {
-  //  console.error('No next line. Stopping');
-  //  return;
-  //}
-
-  //let [nextId] = next;
-
-  //delay(1000);
-
-  //location = `https://www.avito.ru/additem?draftId=${nextId}`;
+  await delay(10000);
+  location = `https://www.avito.ru/profile`;
 })();
