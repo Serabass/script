@@ -6,9 +6,8 @@
 // @author       You
 // @match        https://www.avito.ru/*
 // @grant        GM.xmlHttpRequest
+// @require      file://M:\dev\_job\fl\avito-us\file.js
 // ==/UserScript==
-
-let serverRoot = 'https://pp.serabass.net/avito';
 
 function delay(time) {
   return new Promise((resolve) => {
@@ -46,41 +45,34 @@ function clickCheckboxes() {
 }
 
 function getId() {
-  return document.querySelector('input[name="itemId"]').value;
-}
+  let element = document.querySelector('input[name="itemId"]');
 
-async function getFile() {
-  let res = await fetch(serverRoot + '/file.php');
-  let text = await res.text();
-  return text.trim();
-}
+  if (element) {
+    return element.value;
+  }
+  
+  let url = new URL(location);
 
-function removeFirstLine() {
-  return fetch(serverRoot + '/remove.php');
+  let rgx = /^\/items\/edit\/(\d+)$/;
+  if (rgx.test(url.pathname)) {
+    let [, id] = url.pathname.match(rgx);
+    return id;
+  }
+
+  throw new Error(`No matching id`);
 }
 
 (async function() {
   'use strict';
 
   function getPrices() {
-    return new Promise((resolve) => {
-      GM.xmlHttpRequest({
-        method: "GET",
-        url: 'https://pp.serabass.net/avito/file.php',
-        onload: function(response) {
-          resolve(response);
-        }
-      });
-    })
-    .then(response => response.responseText.trim())
-    .then(responseText => responseText.split(/[\r\n]+/).map(line => line.split(/\s+/)))
-    ;
+    return window
+      .__price_data
+      .split(/[\r\n]+/)
+      .map(line => line.split(/\s+/));
   }
 
-  await delay(2000);
-
-  let prices = await getPrices();
-  let url = new URL(location);
+  let prices = getPrices();
   let draftId = getId();
 
   if (!draftId) {
@@ -97,6 +89,8 @@ function removeFirstLine() {
 
   let [id, price] = prices[priceLineIndex];
 
+  debugger;
+  return;
   await delay(5000);
 
   setPrice(price);
