@@ -72,6 +72,15 @@ function getId() {
   }
 
   let prices = getPrices();
+  let [[firstId, firstPrice]] = prices;
+
+  let neededUrl = `/items/edit/${firstId}`;
+
+  if (location.pathname !== neededUrl) {
+    location = neededUrl;
+    return;
+  }
+
   let draftId = getId();
 
   if (!draftId) {
